@@ -28,7 +28,7 @@ jobs:
     - name: Download sudachi source code
       run: |
         cd ${{ github.workspace }}
-        git clone --branch ${{ github.event.inputs.branch || 'main' }} https://github.com/sudachi-emu/sudachi.git --recursive
+        git clone --branch ${{ github.event.inputs.branch || 'master' }} https://github.com/sudachi-emu/sudachi.git --recursive
         cd sudachi
         sed -i '120i\        -Wno-unused-function' src/CMakeLists.txt
 
@@ -36,7 +36,7 @@ jobs:
       name: Get version
       run: |
         echo "date=$(/bin/date -u "+%Y%m%d")" >> $GITHUB_OUTPUT
-        cd ${{ github.workspace }}/sudachi
+        cd ${{ github.workspace }}/torzu
         echo "hash=$(git log -1 --pretty=format:%H)" >> $GITHUB_OUTPUT
         echo "short_hash=$(git describe --always --long)" >> $GITHUB_OUTPUT
         echo "version=$(git describe --tags --always)" >> $GITHUB_OUTPUT
@@ -48,9 +48,9 @@ jobs:
           ~/.gradle/caches
           ~/.gradle/wrapper
           ~/.cache
-        key: ${{ runner.os }}-sudachi-android-${{ steps.version.outputs.hash }}
+        key: ${{ runner.os }}-torzu-android-${{ steps.version.outputs.hash }}
         restore-keys: |
-            ${{ runner.os }}-sudachi-android-
+            ${{ runner.os }}-torzu-android-
 
     - name: Prepare environment
       run: |
@@ -60,23 +60,23 @@ jobs:
       run: |
         export NDK_CCACHE="$(which ccache)"
         ccache -sv
-        cd ${{ github.workspace }}/sudachi/src/android
+        cd ${{ github.workspace }}/torzu/src/android
         chmod +x ./gradlew
         ./gradlew "assemble${{ github.event.inputs.flavor || 'ea' }}Release"
         # bash gradlew build
-        mv $(find app/build/outputs/apk -type f | grep -E "\.apk$") ${{ github.workspace }}/sudachi-android-${{ github.event.inputs.flavor || 'ea' }}-${{ steps.version.outputs.date }}-${{ steps.version.outputs.version }}.apk
+        mv $(find app/build/outputs/apk -type f | grep -E "\.apk$") ${{ github.workspace }}/torzu-android-${{ github.event.inputs.flavor || 'ea' }}-${{ steps.version.outputs.date }}-${{ steps.version.outputs.version }}.apk
         ccache -sv
 
-    - name: Release Sudachi (Sudachi-Android)
+    - name: Release Torzu (Torzu-Android)
       uses: softprops/action-gh-release@v2
       with:
-        name: Sudachi Android ${{ steps.version.outputs.date }}
+        name: Torzu Android ${{ steps.version.outputs.date }}
         tag_name: sudachi-android
-        files: ${{ github.workspace }}/sudachi-android-${{ github.event.inputs.flavor || 'ea' }}-${{ steps.version.outputs.date }}-${{ steps.version.outputs.version }}.apk
+        files: ${{ github.workspace }}/torzu-android-${{ github.event.inputs.flavor || 'ea' }}-${{ steps.version.outputs.date }}-${{ steps.version.outputs.version }}.apk
 
     - name: Release Sudachi ${{ steps.version.outputs.date }}
       uses: softprops/action-gh-release@v2
       with:
         name: ${{ steps.version.outputs.date }}
         tag_name: ${{ steps.version.outputs.date }}
-        files: ${{ github.workspace }}/sudachi-android-${{ github.event.inputs.flavor || 'ea' }}-${{ steps.version.outputs.date }}-${{ steps.version.outputs.version }}.apk
+        files: ${{ github.workspace }}/torzu-android-${{ github.event.inputs.flavor || 'ea' }}-${{ steps.version.outputs.date }}-${{ steps.version.outputs.version }}.apk
