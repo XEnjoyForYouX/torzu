@@ -3525,17 +3525,13 @@ void GMainWindow::OnOpenMirrorRepo() {
     };
     const std::initializer_list<Mirror> mirrors = {
         {"https://github.com", "/litucks/torzu"},
-        {"https://gitlab.com", "/litucks/torzu"},
-        {"https://bitbucket.org", "/litucks/torzu"},
+        {"https://bitbucket.org", "/torzu-emu/torzu"},
         {"https://codeberg.org", "/litucks/torzu"},
         {"https://notabug.org", "/litucks/torzu"},
         {"https://gitea.com", "/litucks/torzu"},
-        {"https://try.gitea.io", "/litucks/torzu"},
         {"https://git.math.hamburg", "/litucks/torzu"},
-        {"https://gitea.sprint-pay.com", "/litucks/torzu"},
         {"https://gitea.djoe.ovh", "/litucks/torzu"},
-        {"https://git.sheetjs.com", "/litucks/torzu"},
-        {"https://gitea.cisetech.com", "/litucks/torzu"}
+        {"https://try.gitea.io", "/litucks/torzu"}
     };
 
     for (const auto& mirror : mirrors) {
