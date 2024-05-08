@@ -1,4 +1,4 @@
-name: sudachi-android-build-alternative
+name: torzu-android-build-alternative
 
 on:
   workflow_dispatch:
@@ -15,7 +15,7 @@ on:
     - cron: "0 0 */5 * *"
 
 jobs:
-  sudachi_android_build:
+  torzu_android_build:
     permissions:
       contents: write
     runs-on: ubuntu-latest
@@ -28,7 +28,7 @@ jobs:
     - name: Download sudachi source code
       run: |
         cd ${{ github.workspace }}
-        git clone --branch ${{ github.event.inputs.branch || 'master' }} https://github.com/sudachi-emu/sudachi.git --recursive
+        git clone --branch ${{ github.event.inputs.branch || 'master' }} https://github.com/litucks/torzu.git --recursive
         cd sudachi
         sed -i '120i\        -Wno-unused-function' src/CMakeLists.txt
 
