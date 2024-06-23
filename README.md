@@ -19,7 +19,7 @@ It is written in C++ with portability in mind, and I plan to actively maintain b
 ## POSSIBLE PENDING GITHUB MIRROR TAKEDOWN
 
 I have received emails about takedowns on the release binaries hosted at mega (no worries I'll find another place to reupload them).
-If the GitHub mirror gets taken down too, the next mirror repository is going to be: https://codeberg.org/litucks/torzu unless anything comes in the way. You can use the button in the "About" menu of the emulator to get to the current mirror repository. Please note that this is a manual process that could take me up to 2 days (worst case).
+If the GitHub mirror gets taken down too, the next mirror repository is going to be: https://codeberg.org/litucks/torzu unless anything comes in the way. You can use the button in the "About" menu of the emulator to get to the current mirror repository or simply check out the [main repository](http://vub63vv26q6v27xzv2dtcd25xumubshogm67yrpaz2rculqxs7jlfqad.onion/torzu-emu/torzu). Please note that this is a manual process that could take me up to 2 days (worst case).
 
 ## Limited public development
 
