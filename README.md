@@ -13,7 +13,7 @@ SPDX-License-Identifier: GPL-2.0-or-later
 
 <h4 align="center"><b>torzu</b> is a fork of yuzu, the world's most popular, open-source, Nintendo Switch emulator.
 <br>
-It is written in C++ with portability in mind, and I plan to actively maintain builds for Linux, Android and Windows.
+It is written in C++ with portability in mind and runs on Linux and Windows
 </h4>
 
 ## Limited public development
